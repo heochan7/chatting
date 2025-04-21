@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="bg-white p-8 rounded-lg shadow-lg w-96">
+    <h2 class="text-2xl font-bold text-center text-gray-700">회원가입</h2>
+    <form action="/register" method="POST" class="mt-4">
+        <label class="block mb-2 text-sm font-medium text-gray-600" for="name">이름</label>
+        <input type="text" id="name" name="name" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" required>
+
+        <label class="block mt-3 mb-2 text-sm font-medium text-gray-600" for="email">이메일</label>
+        <input type="email" id="email" name="email" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" required>
+
+        <label class="block mt-3 mb-2 text-sm font-medium text-gray-600" for="password">비밀번호</label>
+        <input type="password" id="password" name="password" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" required>
+
+        <label class="block mt-3 mb-2 text-sm font-medium text-gray-600" for="confirmPassword">비밀번호 확인</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300" required>
+
+        <button type="submit" class="w-full mt-5 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">가입하기</button>
+    </form>
+</div>
+</body>
+</html>
