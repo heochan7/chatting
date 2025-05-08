@@ -1,13 +1,17 @@
-package com.example.chatting_application.user.service;
+package com.example.chatting_application.service;
 
-import com.example.chatting_application.user.dto.RegisterRequest;
-import com.example.chatting_application.user.entity.User;
-import com.example.chatting_application.user.exception.UserAlreadyException;
-import com.example.chatting_application.user.repository.UserRepository;
+import com.example.chatting_application.dto.ChatListDTO;
+import com.example.chatting_application.dto.RegisterRequest;
+import com.example.chatting_application.entity.Users;
+import com.example.chatting_application.repository.RoomRepository;
+import com.example.chatting_application.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,7 +20,12 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+
 
     @Transactional
     public void registerUser(RegisterRequest registerRequest) {
@@ -33,8 +42,12 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 
         // User 객체 생성 후 DB에 저장
-        User user = new User(registerRequest.getName(), registerRequest.getEmail(), encodedPassword);
+        Users user = new Users(registerRequest.getName(), registerRequest.getEmail(), encodedPassword);
         userRepository.save(user);
+    }
 
+    public List<ChatListDTO> getChatList(String email){
+        List<ChatListDTO> chatList = roomRepository.findChatList(email);
+        return chatList;
     }
 }

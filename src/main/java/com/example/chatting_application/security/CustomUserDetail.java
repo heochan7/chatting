@@ -1,6 +1,6 @@
 package com.example.chatting_application.security;
 
-import com.example.chatting_application.user.entity.User;
+import com.example.chatting_application.entity.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,10 +9,10 @@ import java.util.List;
 
 public class CustomUserDetail implements UserDetails {
 
-    private User user;
+    private Users users;
 
-    public CustomUserDetail(User user){
-        this.user = user;
+    public CustomUserDetail(Users user){
+        this.users = user;
     }
 
     @Override
@@ -22,12 +22,11 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return users.getEmail();
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return users.getPassword();
     }
-
 }

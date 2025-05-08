@@ -1,7 +1,7 @@
 package com.example.chatting_application.security;
 
-import com.example.chatting_application.user.entity.User;
-import com.example.chatting_application.user.repository.UserRepository;
+import com.example.chatting_application.entity.Users;
+import com.example.chatting_application.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,7 +18,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User Not found"));
+        Users user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User Not found"));
 
         return new CustomUserDetail(user);
     }

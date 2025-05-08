@@ -1,4 +1,4 @@
-package com.example.chatting_application.user.dto;
+package com.example.chatting_application.dto;
 
 
 import lombok.Getter;
