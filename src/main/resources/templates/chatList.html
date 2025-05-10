@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Chat List</title>
-    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/chatList.css}">
 </head>
 <body>
 
@@ -28,6 +28,12 @@
         <div class="chat-right" th:text="${chat.recentMessageTime}">10:20 AM</div>
     </div>
 </div>
+
+<a href="/create" class="create-chatroom-button">
+    <span class="create-chatroom-icon">+</span>
+    채팅방 만들기
+</a>
+
 
 <script th:inline="javascript">
     /*<![CDATA[*/
