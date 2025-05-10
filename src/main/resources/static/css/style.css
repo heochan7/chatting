@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 2rem;
+    background-color: #f0f2f5;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+#noRoomMessage {
+    color: #888;
+    font-size: 1.1rem;
+    background-color: #fff4f4;
+    border: 1px solid #ffdddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chat-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.chat-card:hover {
+    background-color: #f4f6fb;
+}
+
+.chat-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #c7d2fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.chat-info {
+    flex-grow: 1;
+}
+
+.chat-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.3rem;
+}
+
+.chat-meta {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.chat-right {
+    text-align: right;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    min-width: 80px;
+}
+#logoutButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

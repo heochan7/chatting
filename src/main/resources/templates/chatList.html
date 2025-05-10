@@ -2,54 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Chat List</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 2rem;
-            background-color: #f9fafb;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        #noRoomMessage {
-            color: #888;
-            font-size: 1.1rem;
-            background-color: #fff4f4;
-            border: 1px solid #ffdddd;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-        }
-
-        th {
-            background-color: #4f46e5;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f1f5f9;
-        }
-
-        tr:hover {
-            background-color: #e0e7ff;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
 
@@ -57,35 +10,34 @@
 
 <p id="noRoomMessage" style="display: none;">채팅방이 없습니다! 방을 만들어 시작해보세요!</p>
 
-<table id="chatTable" style="display: none;">
-    <thead>
-    <tr>
-        <th>방 이름</th>
-        <th>최근 메시지</th>
-        <th>최근 메시지 시간</th>
-        <th>참여 인원</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="chat : ${chatList}">
-        <td th:text="${chat.roomName}">Room Name</td>
-        <td th:text="${chat.recentMessage}">Recent Message</td>
-        <td th:text="${chat.recentMessageTime}">Message Time</td>
-        <td th:text="${chat.participantCount}">Participant Count</td>
-    </tr>
-    </tbody>
-</table>
+<form action="/logout" method="POST">
+    <button id="logoutButton" type="submit">로그아웃</button>
+</form>
+
+<div class="chat-list" id="chatListContainer" style="display: none;">
+    <div class="chat-card" th:each="chat : ${chatList}">
+        <div class="chat-icon" th:text="${chat.roomName.substring(0, 1)}">R</div>
+        <div class="chat-info">
+            <div class="chat-title" th:text="${chat.roomName}">Room Name</div>
+            <div class="chat-meta">
+                <span th:text="${chat.recentMessage}">Recent message</span>
+                &nbsp;·&nbsp;
+                <span th:text="'참여자 ' + ${chat.participantCount} + '명'">3명</span>
+            </div>
+        </div>
+        <div class="chat-right" th:text="${chat.recentMessageTime}">10:20 AM</div>
+    </div>
+</div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
     var chatList = /*[[${chatList}]]*/ [];
-
     if (chatList.length === 0) {
         document.getElementById("noRoomMessage").style.display = "block";
-        document.getElementById("chatTable").style.display = "none";
+        document.getElementById("chatListContainer").style.display = "none";
     } else {
         document.getElementById("noRoomMessage").style.display = "none";
-        document.getElementById("chatTable").style.display = "block";
+        document.getElementById("chatListContainer").style.display = "flex";
     }
     /*]]>*/
 </script>
