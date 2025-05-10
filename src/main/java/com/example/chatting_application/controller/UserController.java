@@ -1,33 +1,27 @@
 package com.example.chatting_application.controller;
 
-import com.example.chatting_application.dto.ChatListDTO;
 import com.example.chatting_application.dto.RegisterRequest;
 import com.example.chatting_application.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
-@RequestMapping
 @Controller
-public class AuthController {
-
+public class UserController {
     private final UserService userService;
 
-    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public AuthController(UserService userService){
+    public UserController(UserService userService){
         this.userService = userService;
     }
 
     @GetMapping("/")
     public String showIndex(){
-        return "index";
+        return "redirect:/login";
     }
 
     // 로그인
@@ -52,12 +46,4 @@ public class AuthController {
         }
     }
 
-    // 채팅 리스트
-    @GetMapping("/chatList")
-    public String showChatList(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List<ChatListDTO> chatList = userService.getChatList(auth.getName());
-        model.addAttribute("chatList", chatList);
-        return "chatList";
-    }
 }
